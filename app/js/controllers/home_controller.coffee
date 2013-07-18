@@ -1,4 +1,4 @@
-angular.module("app").controller 'HomeController', ($scope) ->
+angular.module("app").controller 'HomeController', ($scope, StackService) ->
   $scope.noot_from_name = (name) ->
     { 'name': name }
 
@@ -14,10 +14,11 @@ angular.module("app").controller 'HomeController', ($scope) ->
     $scope.noot_from_name("Modafinil")
   ]
 
-  $scope.stack = {}
+  $scope.stack = StackService.getStack()
 
   $scope.add = (noot) ->
-    $scope.stack[noot] = $scope.noot_from_name(noot)
+    StackService.add(noot)
 
   $scope.remove = (noot) ->
-    delete $scope.stack[noot]
+    StackService.remove(noot)
+
