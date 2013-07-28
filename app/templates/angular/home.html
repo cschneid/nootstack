@@ -1,23 +1,22 @@
 <div id="home" class="row">
-  <div class="large-8 large-centered large-offset-2">
+  <div class="large-8 large-centered large-offset-2" ng-controller="HomeController">
     <h2>{{ title }}</h2>
 
-    <div class="large-6 columns" ng-controller="NootController">
+    <div class="large-6 columns" >
       <h3>All Nootropics:</h3>
       <input placeholder="Search" ng-model="search">
       <ul>
-        <li class="noot" ng-repeat="noot in noots | orderBy: 'name' | filter: search | limitTo: 5">
+        <li class="noot" ng-repeat="noot in allnoots | orderBy: 'name' | filter: search | limitTo: 5">
           <a ng-click="add(noot.name)">{{ noot.name }}</a>
         </li>
       </ul>
     </div>
 
-    <div class="large-6 columns" ng-controller="StackController">
+    <div class="large-6 columns">
       <h3>My Stack:</h3>
       <ul>
         <li class="noot"  ng-repeat="noot in stack | orderBy: name">
-        <span ng-click="remove(noot.name)">
-          <a>{{ noot.name }}<img class="icon" src="/img/icons/png/minus2.png"></a>
+          <noot></noot>
         </li>
       </ul>
     </div>
