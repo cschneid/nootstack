@@ -1,9 +1,14 @@
-angular.module("app").controller 'HomeController', ($scope, NootBuilder, AllNootsService) ->
-  $scope.stack = {}
+angular.module("app").controller 'HomeController', ($scope, $location, LocationService, StackService, NootBuilder, AllNootsService) ->
+  $scope.stack = StackService.stack
+
   $scope.allnoots = AllNootsService.noots
 
   $scope.add = (noot) ->
-    $scope.stack[noot] = NootBuilder.noot_from_name(noot)
+    StackService.add(noot)
+    LocationService.update()
 
   $scope.remove = (noot) ->
-    delete $scope.stack[noot]
+    StackService.remove(noot)
+    LocationService.update()
+
+  LocationService.load()
